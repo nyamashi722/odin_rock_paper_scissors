@@ -1,4 +1,4 @@
-function getComputerChoice () {
+function getComputerChoice() {
     let result = Math.random();
     
     if (result <= (1/3)) {
@@ -13,14 +13,8 @@ function getComputerChoice () {
     }
 }
 
-const choice = prompt("Please input Rock, Paper or Scissors");
-
-const playerSelection = choice.toLowerCase();
-
-const computerSelection = getComputerChoice();
-
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == "rock" && computerSelection =="rock") {
+   if (playerSelection == "rock" && computerSelection =="rock") {
       return "It's a tie! You both chose rock!";
     } else if (playerSelection == "rock" && computerSelection == "paper") {
       return "You lose! Paper beats Rock!";
@@ -43,8 +37,14 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
+function game() {
+  for (let i = 0; i < 5; i++) {
+    const choice = prompt("Please input Rock, Paper or Scissors");
+    const playerSelection = choice.toLowerCase();
+    const computerSelection = getComputerChoice();
+    const oneRound = playRound(playerSelection, computerSelection);
+    console.log(oneRound);
+   
+  }
 
-
-
-
-
+}
