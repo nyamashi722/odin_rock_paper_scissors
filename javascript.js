@@ -13,8 +13,8 @@ function getComputerChoice() {
     }
 };
 
-/*let playerScore = 0;
-let computerScore = 0;*/
+let playerScore = 0;
+let computerScore = 0;
 
 let userChoice = "";
 
@@ -27,10 +27,8 @@ buttons.forEach((button) => {
 });
 
 buttons.forEach((button) => {
-  button.addEventListener("click", playRound)
+  button.addEventListener("click", keepScore)
 });
-
-let oneRoundResult = ""
 
 const results = document.querySelector("#results-container")
 
@@ -40,32 +38,33 @@ resultsContent.classList.add("results-content");
 results.appendChild(resultsContent);
 
 function playRound(playerSelection, computerSelection) {
-  computerSelection = getComputerChoice();
-  playerSelection = userChoice;
    if (playerSelection == computerSelection) {
       resultsContent.textContent = `It's a tie! You both chose ${playerSelection}!`
+      return resultsContent.textContent
     } else if (playerSelection == "rock" && computerSelection == "paper") {
       resultsContent.textContent = "You lose! Paper beats Rock!"
-     
+      return resultsContent.textContent
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
       resultsContent.textContent = "You win! Rock beats scissors!"
-   
+      return resultsContent.textContent
     } else if (playerSelection == "paper" && computerSelection == "rock") {
       resultsContent.textContent = "You win! Paper beats rock!"
-   
+      return resultsContent.textContent
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
       resultsContent.textContent = "You lose! Scissors beats paper!"
-  
+      return resultsContent.textContent
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
       resultsContent.textContent = "You lose! Rock beats scissors!"
-
+      return resultsContent.textContent
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
       resultsContent.textContent = "You win! Scissors beats paper!"
-
+      return resultsContent.textContent
     }
   };
 
-  /*const score = document.querySelector("#score-container")
+
+
+  const score = document.querySelector("#score-container")
 
   const scoreContent = document.createElement("div");
   resultsContent.classList.add("score-content");
@@ -76,29 +75,40 @@ function playRound(playerSelection, computerSelection) {
 function keepScore() {
   const playerSelection = userChoice;
   const computerSelection = getComputerChoice();
-  const oneRound = playRound(playerSelection, computerSelection);
+  let oneRound = playRound(playerSelection, computerSelection)
   if (oneRound.includes("win")) {
     playerScore++;
-    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    scoreContent.textContent = ("Player score: " + playerScore + ", " + "Computer score: " + computerScore);
+    return scoreContent.textContent
   } else if (oneRound.includes("lose")) {
     computerScore++;
     scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    return scoreContent.textContent
   } else if (oneRound.includes("tie")) {
     scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    return scoreContent.textContent
   } else {
     scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    return scoreContent.textContent
   }
 };
 
+/*const finalResult = document.querySelector("#final-result")
+
+const finalResultContent = document.createElement("div");
+finalResultContent.classList.add("final-result-content");
+
+results.appendChild(finalResultContent);
+
 function game() {
   for (let i = 0; i < 5; i++) {
-    console.log(keepScore());
+    keepScore();
   }
   if (playerScore > computerScore) {
-    console.log(`You win the whole game! The final score is: Player - ${playerScore} Computer - ${computerScore}`);
+    finalResultContent.textContent = (`You win the whole game! The final score is: Player: ${playerScore} Computer: ${computerScore}`);
   } else if (playerScore == computerScore) {
-    console.log(`It's a tie game! The final score is: Player - ${playerScore} Computer - ${computerScore}` );
+    finalResultContent.textContent = (`It's a tie game! The final score is: Player: ${playerScore} Computer: ${computerScore}` );
   } else {
-    console.log(`You lose the whole game! The final score is: Player - ${playerScore} Computer - ${computerScore}`);
+    finalResultContent.textContent = (`You lose the whole game! The final score is: Player: ${playerScore} Computer: ${computerScore}`);
   }
 };*/
