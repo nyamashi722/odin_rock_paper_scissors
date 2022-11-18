@@ -64,12 +64,12 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-  const score = document.querySelector("#score-container")
+const score = document.querySelector("#score-container")
 
-  const scoreContent = document.createElement("div");
-  resultsContent.classList.add("score-content");
+const scoreContent = document.createElement("div");
+resultsContent.classList.add("score-content");
   
-  results.appendChild(scoreContent);
+score.appendChild(scoreContent);
 
 
 function keepScore() {
