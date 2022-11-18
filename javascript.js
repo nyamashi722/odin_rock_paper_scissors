@@ -11,49 +11,84 @@ function getComputerChoice() {
       let computerSelection = "scissors";
       return computerSelection;
     }
-}
+};
 
-let playerScore = 0;
-let computerScore = 0;
+/*let playerScore = 0;
+let computerScore = 0;*/
+
+let userChoice = "";
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    userChoice = (button.value)
+  })
+});
+
+buttons.forEach((button) => {
+  button.addEventListener("click", playRound)
+});
+
+let oneRoundResult = ""
+
+const results = document.querySelector("#results-container")
+
+const resultsContent = document.createElement("div");
+resultsContent.classList.add("results-content");
+
+results.appendChild(resultsContent);
 
 function playRound(playerSelection, computerSelection) {
+  computerSelection = getComputerChoice();
+  playerSelection = userChoice;
    if (playerSelection == computerSelection) {
-      return `It's a tie! You both chose ${playerSelection}!`
+      resultsContent.textContent = `It's a tie! You both chose ${playerSelection}!`
     } else if (playerSelection == "rock" && computerSelection == "paper") {
-      return "You lose! Paper beats Rock!";
+      resultsContent.textContent = "You lose! Paper beats Rock!"
+     
     } else if (playerSelection == "rock" && computerSelection == "scissors") {
-      return "You win! Rock beats scissors!"
+      resultsContent.textContent = "You win! Rock beats scissors!"
+   
     } else if (playerSelection == "paper" && computerSelection == "rock") {
-      return "You win! Paper beats rock!"
+      resultsContent.textContent = "You win! Paper beats rock!"
+   
     } else if (playerSelection == "paper" && computerSelection == "scissors") {
-      return "You lose! Scissors beats paper!"
+      resultsContent.textContent = "You lose! Scissors beats paper!"
+  
     } else if (playerSelection == "scissors" && computerSelection == "rock") {
-      return "You lose! Rock beats scissors!"
+      resultsContent.textContent = "You lose! Rock beats scissors!"
+
     } else if (playerSelection == "scissors" && computerSelection == "paper") {
-      return "You win! Scissors beats paper!"
-    } else {
-      return "Invalid input! Input either Rock, Paper or Scissors!"
+      resultsContent.textContent = "You win! Scissors beats paper!"
+
     }
-  }
+  };
+
+  /*const score = document.querySelector("#score-container")
+
+  const scoreContent = document.createElement("div");
+  resultsContent.classList.add("score-content");
+  
+  results.appendChild(scoreContent);
+
 
 function keepScore() {
-  const choice = prompt("Please input Rock, Paper or Scissors");
-  const playerSelection = choice.toLowerCase();
+  const playerSelection = userChoice;
   const computerSelection = getComputerChoice();
   const oneRound = playRound(playerSelection, computerSelection);
-  console.log(oneRound);
   if (oneRound.includes("win")) {
-    playerScore++
-    return "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    playerScore++;
+    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
   } else if (oneRound.includes("lose")) {
     computerScore++;
-    return "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
   } else if (oneRound.includes("tie")) {
-    return "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
   } else {
-    return "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
+    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
   }
-}
+};
 
 function game() {
   for (let i = 0; i < 5; i++) {
@@ -66,4 +101,4 @@ function game() {
   } else {
     console.log(`You lose the whole game! The final score is: Player - ${playerScore} Computer - ${computerScore}`);
   }
-}
+};*/
