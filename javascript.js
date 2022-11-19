@@ -27,7 +27,7 @@ buttons.forEach((button) => {
 });
 
 buttons.forEach((button) => {
-  button.addEventListener("click", keepScore)
+  button.addEventListener("click", game)
 });
 
 const results = document.querySelector("#results-container")
@@ -67,7 +67,7 @@ function playRound(playerSelection, computerSelection) {
 const score = document.querySelector("#score-container")
 
 const scoreContent = document.createElement("div");
-resultsContent.classList.add("score-content");
+scoreContent.classList.add("score-content");
   
 score.appendChild(scoreContent);
 
@@ -93,22 +93,31 @@ function keepScore() {
   }
 };
 
-/*const finalResult = document.querySelector("#final-result")
+const finalResult = document.querySelector("#final-result")
 
 const finalResultContent = document.createElement("div");
 finalResultContent.classList.add("final-result-content");
 
-results.appendChild(finalResultContent);
+finalResult.appendChild(finalResultContent);
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    keepScore();
+  keepScore()
+  if (playerScore == 5) {
+    finalResultContent.textContent = `Humans have triumphed! 
+      The final score is Humans: ${playerScore}, Machines: ${computerScore}`
+    resultsContent.textContent = "";
+    scoreContent.textContent = "";
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true;
+    }
   }
-  if (playerScore > computerScore) {
-    finalResultContent.textContent = (`You win the whole game! The final score is: Player: ${playerScore} Computer: ${computerScore}`);
-  } else if (playerScore == computerScore) {
-    finalResultContent.textContent = (`It's a tie game! The final score is: Player: ${playerScore} Computer: ${computerScore}` );
-  } else {
-    finalResultContent.textContent = (`You lose the whole game! The final score is: Player: ${playerScore} Computer: ${computerScore}`);
+  else if (computerScore == 5) {
+    finalResultContent.textContent = `The machines have won and humanity is doomed...
+      The final score is Humans: ${playerScore}, Machines: ${computerScore}`
+    resultsContent.textContent = "";
+    scoreContent.textContent = "";
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].disabled = true;
+    }
   }
-};*/
+}
