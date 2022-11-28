@@ -3,8 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <title>Rock Paper Scissors</title>
-        <script src="javascript.js"></script>
+        <script src="javascript.js" defer></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="title-container">
+            <h1 class="main-info">Welcome to the Rock Paper Scissors World Championships</h1>
+            <h2 class="info">First to 5 wins</h2>
+        </div> 
+
+        <div class="image-container">
+            <div class="player-choice-image">
+                <img id="player-symbol" src = "question-mark.png" alt="Image of a question  mark">
+            </div>
+            <div class="computer-choice-image">
+                <img id="computer-symbol" src = "question-mark.png" alt="Image of a question mark">
+            </div>
+        </div>
+
+        <div id="results-container"></div>
+        <div id="final-result"></div>
+
+        <div class="buttons-container">
+            <button id="rock" value="rock">ROCK</button>
+            <button id="paper" value="paper">PAPER</button>
+            <button id="scissors" value="scissors">SCISSORS</button>
+        </div>
+
+        <div id="restart"></div>
+
+
     </body>
 </html>
