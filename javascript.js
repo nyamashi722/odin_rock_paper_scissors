@@ -4,10 +4,14 @@ let userChoice = "";
 
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector("#results-container")
-const score = document.querySelector("#score-container")
+const playerChoiceImage = document.querySelector(".player-choice-image")
+const computerChoiceImage = document.querySelector(".computer-choice-image")
 const finalResult = document.querySelector("#final-result")
 const playerSymbol = document.querySelector("#player-symbol")
 const computerSymbol = document.querySelector("#computer-symbol")
+const initialPlayerScore = document.querySelector(".initial-player-score")
+const initialComputerScore = document.querySelector(".initial-computer-score")
+const restart = document.querySelector("#restart")
 
 function getComputerChoice() {
   let result = Math.random();
@@ -37,6 +41,7 @@ buttons.forEach((button) => {
 
 const resultsContent = document.createElement("div");
 resultsContent.classList.add("results-content");
+resultsContent.textContent = "MAKE YOUR CHOICE";
 results.appendChild(resultsContent);
 
 const playerSymbolContent = document.createElement("img")
@@ -81,9 +86,17 @@ function playRound(playerSelection, computerSelection) {
   }
 };
 
-const scoreContent = document.createElement("div");
-scoreContent.classList.add("score-content");
-score.appendChild(scoreContent);
+const playerScoreContent = document.createElement("p");
+playerScoreContent.classList.add("initial-score-content");
+playerScoreContent.textContent = "You: 0";
+playerChoiceImage.appendChild(playerScoreContent);
+
+const computerScoreContent = document.createElement("p");
+computerScoreContent.classList.add("computer-score-content");
+computerScoreContent.textContent = "Them: 0"
+computerChoiceImage.appendChild(computerScoreContent);
+
+
 
 function keepScore() {
   const playerSelection = userChoice;
@@ -92,18 +105,26 @@ function keepScore() {
   let oneRound = playRound(playerSelection, computerSelection)
   if (oneRound.includes("win")) {
     playerScore++;
-    scoreContent.textContent = ("Player score: " + playerScore + ", " + "Computer score: " + computerScore);
-    return scoreContent.textContent
+    let scoreContent = playerScoreContent + computerScoreContent;
+    playerScoreContent.textContent = "You: " + playerScore;
+    computerScoreContent.textContent = "Them: " + computerScore;
+    return scoreContent;
   } else if (oneRound.includes("lose")) {
     computerScore++;
-    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
-    return scoreContent.textContent
+    let scoreContent = playerScoreContent + computerScoreContent;
+    playerScoreContent.textContent = "You: " + playerScore;
+    computerScoreContent.textContent = "Them: " + computerScore;
+    return scoreContent;
   } else if (oneRound.includes("tie")) {
-    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
-    return scoreContent.textContent
+    let scoreContent = playerScoreContent + computerScoreContent;
+    playerScoreContent.textContent = "You: " + playerScore;
+    computerScoreContent.textContent = "Them: " + computerScore;
+    return scoreContent;
   } else {
-    scoreContent.textContent = "Player score: " + playerScore + ", " + "Computer score: " + computerScore;
-    return scoreContent.textContent
+    let scoreContent = playerScoreContent + computerScoreContent;
+    playerScoreContent.textContent = "You: " + playerScore;
+    computerScoreContent.textContent = "Them: " + computerScore;
+    return scoreContent;
   }
 };
 
@@ -111,22 +132,27 @@ const finalResultContent = document.createElement("div");
 finalResultContent.classList.add("final-result-content");
 finalResult.appendChild(finalResultContent);
 
+const restartButton = document.createElement("button")
+restartButton.classList.add("restart-button")
+restartButton.innerHTML = "Try again?";
+restartButton.addEventListener("click", () => {
+  location.reload();
+})
+
 function game() {
   keepScore()
   if (playerScore == 5) {
-    finalResultContent.textContent = `You are the Rock Paper Scissors champion! 
-      The final score is You: ${playerScore}, Computer: ${computerScore}`
+    finalResultContent.textContent = "You win! You are the Rock Paper Scissors champion!"
     resultsContent.textContent = "";
-    scoreContent.textContent = "";
+    restart.appendChild(restartButton);
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
     }
   }
   else if (computerScore == 5) {
-    finalResultContent.textContent = `You lost, but don't worry there's always next year!
-      The final score is You: ${playerScore}, Computer: ${computerScore}`
+    finalResultContent.textContent = "You lost, but don't worry there's always next year!"
     resultsContent.textContent = "";
-    scoreContent.textContent = "";
+    restart.appendChild(restartButton);
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].disabled = true;
     }
